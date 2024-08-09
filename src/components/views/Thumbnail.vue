@@ -31,8 +31,10 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { type Thumbnail } from '../../types/index'
 import { getPaginatedThumbnails } from '../../helpers'
 import Modal from '../molecules/Modal.vue'
-
-const thumbnails = ref<Array<Thumbnail>>([])
+const props = defineProps({
+  thumbnails: Array<Thumbnail>
+})
+const thumbnails = ref<Array<Thumbnail>>(props.thumbnails || [])
 const thumbnailsContainer = ref()
 const isMobile = window.innerWidth < 768
 const thumbnailModalImage = ref<Thumbnail>()
