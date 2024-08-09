@@ -5,6 +5,7 @@
       :thumbnail="thumbnailModalImage"
       :showModal="showModal"
       @toggleModal="toggleModal"
+      @modifyDescription="updateElement"
     />
     <div ref="thumbnailsContainer" class="flex flex-wrap justify-center thumbnails-container">
       <div
@@ -47,6 +48,13 @@ const toggleModal = (elementId?: number) => {
   showModal.value = !showModal.value
 }
 
+const updateElement = (modThumbnail: Thumbnail) => {
+  thumbnails.value = thumbnails.value.map((thumbnail) =>
+    thumbnail.id == modThumbnail.id ? { ...modThumbnail } : { ...thumbnail }
+  )
+  localStorage.setItem('thumbnails', JSON.stringify(thumbnails.value))
+}
+
 const updateThumnailDimentions = () => {
   const paddingLeftoverDesktop = 20 * 5
   let debounce
@@ -55,18 +63,19 @@ const updateThumnailDimentions = () => {
     const individualThumbnailWidth =
       (thumbnailsContainer.value.offsetWidth - paddingLeftoverDesktop) / 5
     thumbnailWidth.value = individualThumbnailWidth
-    console.log(
-      'TCL: thumbnailsContainer',
-      thumbnailsContainer.value.offsetWidth,
-      thumbnailWidth.value
-    )
   }, 200)
 }
 
 onMounted(async () => {
   window.addEventListener('resize', updateThumnailDimentions)
-  const { elements: thumbnailsMainPage } = await getPaginatedThumbnails()
-  thumbnails.value = thumbnailsMainPage
+  // in case of localstorage reference use it and do not ask the api
+  const storedThumbnails = localStorage.getItem('thumbnails')
+  if (storedThumbnails) {
+    thumbnails.value = JSON.parse(storedThumbnails)
+  } else {
+    const { elements: thumbnailsMainPage } = await getPaginatedThumbnails()
+    thumbnails.value = thumbnailsMainPage
+  }
 })
 onBeforeUnmount(() => {
   window.removeEventListener('resize', updateThumnailDimentions)

@@ -12,6 +12,7 @@ export interface Thumbnail {
   title: string
   url: string
   thumbnailUrl: string
+  description?: string
 }
 
 export interface PaginatedThumbnails {

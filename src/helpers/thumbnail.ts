@@ -15,15 +15,13 @@ const getAllThumbnails = async (): Promise<Array<Thumbnail>> => {
 
 const getPaginatedThumbnails = async (): Promise<PaginatedThumbnails> => {
   const paginatedThumbnails = pagination(await getAllThumbnails(), 25)
-  console.log('TCL: paginatedThumbnails', paginatedThumbnails)
   return paginatedThumbnails
 }
 
 const pagination = (
   arrayData: Array<Thumbnail>,
   elementsPerPage: number,
-  currentPage: number = 0,
-  method?: string
+  currentPage: number = 0
 ): Promise<PaginatedThumbnails> => {
   const totalPages = arrayData.length / elementsPerPage
   // if (method === '+') {
