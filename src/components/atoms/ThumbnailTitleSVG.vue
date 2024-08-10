@@ -66,10 +66,9 @@ export default {
 </script>
 
 <style>
-  @media (max-width: 768px) {
-  .app-title{
-    transform: scale(0.3);
+@media (max-width: 768px) {
+  .app-title {
+    transform: scale(0.5);
   }
-  
 }
 </style>
