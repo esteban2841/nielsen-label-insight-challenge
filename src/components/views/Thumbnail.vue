@@ -35,9 +35,6 @@ const props = defineProps({
   thumbnails: Array<Thumbnail>
 })
 
-const uri = import.meta.env.THUMBNAIL_API_URI
-console.log('TCL: uri', uri)
-
 const thumbnails = ref<Array<Thumbnail>>(props.thumbnails || [])
 const thumbnailsContainer = ref()
 const isMobile = window.innerWidth < 768
