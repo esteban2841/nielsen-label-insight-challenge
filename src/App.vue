@@ -13,3 +13,4 @@ import ThumbnnailsTitleSVG from './components/atoms/ThumbnailTitleSVG.vue'
     <Thumbnail />
   </main>
 </template>
+

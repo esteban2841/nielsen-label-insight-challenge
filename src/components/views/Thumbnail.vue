@@ -42,7 +42,7 @@ const thumbnailModalImage = ref<Thumbnail>()
 
 // first calc made base on mobile as 768 px and having on mind of paddings same for desktop
 let thumbnailWidth = isMobile
-  ? ref((window.innerWidth - 60) / 5)
+  ? ref((window.innerWidth - 100) / 5)
   : ref((window.innerWidth - 120) / 5)
 const showModal = ref(false)
 
