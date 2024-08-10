@@ -1,6 +1,8 @@
 import { type PaginatedThumbnails, type Thumbnail } from '../types/index'
 import { ajaxHTTPRequester } from './ajax'
 
+const uri = import.meta.env.THUMBNAIL_API_URI
+
 const getAllThumbnails = async (): Promise<Array<Thumbnail>> => {
   const thumbnailsApiUrl = 'https://jsonplaceholder.typicode.com/photos'
 
